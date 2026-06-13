@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ac41aa441cc0997459219e40fab1e216, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -200,7 +200,7 @@ MonoBehaviour:
   enemyGameObjectPrefabs:
   - {fileID: 7801732218520604108, guid: 54ec92c27e24dd84e9253c373e60b05d, type: 3}
   bossGameObjectPrefabs:
-  - {fileID: 0}
+  - {fileID: 3366722428360143028, guid: eaddc2bc567761044b9d91d67580eb9f, type: 3}
   spawnInterval: 2
   enemyAmount: 5
 --- !u!4 &74627236
@@ -785,7 +785,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2541,7 +2541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2434407882987627693, guid: 54ec92c27e24dd84e9253c373e60b05d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33.35
+      value: 91.3
       objectReference: {fileID: 0}
     - target: {fileID: 2434407882987627693, guid: 54ec92c27e24dd84e9253c373e60b05d, type: 3}
       propertyPath: m_LocalRotation.w

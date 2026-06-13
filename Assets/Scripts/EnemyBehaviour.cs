@@ -6,9 +6,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private Transform targetCheckStartPos;
 
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxDistance;
-    [SerializeField] private float rayHitDistance;
+    [SerializeField] private float maxDistance = -4;
+    [SerializeField] private float rayHitDistance = 1;
     [SerializeField] private float attackCooldown = 5f;
+    [SerializeField] private int attackAmount = 50;
 
     private Stats wallStats;
     private RaycastHit forwardHit;
@@ -77,7 +78,7 @@ public class EnemyBehaviour : MonoBehaviour
             //Debug.Log("Inside Attack");
 
             wallStats = forwardHit.transform.GetComponent<Stats>();
-            wallStats.Damage(50);
+            wallStats.Damage(attackAmount);
 
             attackTimeCounter = 0;
         }

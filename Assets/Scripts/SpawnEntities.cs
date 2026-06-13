@@ -44,7 +44,7 @@ public class SpawnEntities : MonoBehaviour
 
         Vector3 spawnAreaPosition = new Vector3(randomBoundX, transform.position.y, randomBoundZ);
 
-        Instantiate(enemyGameObjectPrefabs[PickRandomEnemy()], spawnAreaPosition, Quaternion.identity);
+        Instantiate(enemyGameObjectPrefabs[PickRandomEnemy()], spawnAreaPosition, Quaternion.identity, transform);
     }
 
     private void SpawnBoss() {

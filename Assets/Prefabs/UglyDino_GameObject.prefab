@@ -89,6 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1000
   health: 0
+  despawnTime: 10
 --- !u!1 &5637094635442652825
 GameObject:
   m_ObjectHideFlags: 0

@@ -105,6 +105,7 @@ MonoBehaviour:
   maxDistance: -4
   rayHitDistance: 1
   attackCooldown: 5
+  attackAmount: 50
 --- !u!114 &2201200421842843392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   health: 0
+  despawnTime: 5
 --- !u!1001 &4624789189542691508
 PrefabInstance:
   m_ObjectHideFlags: 0

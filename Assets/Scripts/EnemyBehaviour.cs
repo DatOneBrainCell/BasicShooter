@@ -5,32 +5,43 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private Transform targetCheckStartPos;
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed = 3;
     [SerializeField] private float maxDistance = -4;
     [SerializeField] private float rayHitDistance = 1;
     [SerializeField] private float attackCooldown = 5f;
     [SerializeField] private int attackAmount = 50;
 
     private Stats wallStats;
+    private Stats enemyStats;
     private RaycastHit forwardHit;
     private GameObject player;
+    private Collider enemyCollider;
 
-    private float attackTimeCounter;
+    private float attackTimeCounter = 0f;
     private Vector3 playerLookAtPosition;
 
+    //FOR ANIMATION
+    private bool isAttacking = false;
+    private bool isIdle = false;
+
     private const string PLAYER = "Player";
-    private const string ENEMY = "Enemy";
     private const string OBSTACLE = "Obstacle";
 
     private void Start() {
 
+        enemyCollider = GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag(PLAYER);
+        enemyStats = GetComponent<Stats>();
+        StartCoroutine(CheckEnemyDeathCoroutine());
     }
 
     private void Update() {
 
         MoveTowardsPlayer();
+
     }
+
+    //FUNCTIONS
 
     private void MoveTowardsPlayer() {
 
@@ -38,6 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (!ForwardCheck()) {
 
+            isIdle = false;
             transform.LookAt(playerLookAtPosition);
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
@@ -57,9 +69,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool ForwardCheck() {
 
+
         if (Physics.Raycast(targetCheckStartPos.position, targetCheckStartPos.forward, out forwardHit, rayHitDistance)) {
 
             //Debug.Log("Inside Raycast");
+            isIdle = true;
 
             if(forwardHit.transform.tag == OBSTACLE) {
                 
@@ -75,7 +89,8 @@ public class EnemyBehaviour : MonoBehaviour
 
         if(CanAttack()) {
 
-            //Debug.Log("Inside Attack");
+            isIdle = false;
+            isAttacking = true;
 
             wallStats = forwardHit.transform.GetComponent<Stats>();
             wallStats.Damage(attackAmount);
@@ -91,7 +106,37 @@ public class EnemyBehaviour : MonoBehaviour
             return true;
         }
         attackTimeCounter += Time.deltaTime;
+
+        isAttacking = false;
         return false;
     }
 
+    //COROUTINES
+
+    private IEnumerator CheckEnemyDeathCoroutine() {
+
+        while (true) {
+                yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+            if (enemyStats.GetHealth() <= 0) {
+                moveSpeed = 0f;
+                attackAmount = 0;
+                enemyCollider.enabled = false;
+
+                Destroy(gameObject, 5f);
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    //GET FUNCTIONS
+
+    internal bool GetIsAttacking() {
+        return isAttacking;
+    }
+
+    internal bool GetIsIdle() {
+        return isIdle;
+    }
 }

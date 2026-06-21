@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 680073149556440162}
   - component: {fileID: 4841415448595721076}
   - component: {fileID: 2201200421842843392}
+  - component: {fileID: 2737365415516619593}
   m_Layer: 7
   m_Name: Quadruple_basic
   m_TagString: Enemy
@@ -121,6 +122,19 @@ MonoBehaviour:
   maxHealth: 50
   health: 0
   despawnTime: 5
+--- !u!114 &2737365415516619593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801732218520604108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6466920a0f0ec429659d14cbf6c72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_animation: Armature|QuadruplsAttack
 --- !u!1001 &4624789189542691508
 PrefabInstance:
   m_ObjectHideFlags: 0

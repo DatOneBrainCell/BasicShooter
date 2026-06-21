@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5641801004664428530}
   - component: {fileID: 6916450406102997297}
   - component: {fileID: 8678915193099870356}
+  - component: {fileID: -6866260743376558173}
   m_Layer: 7
   m_Name: UglyDino_GameObject
   m_TagString: Enemy
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCheckStartPos: {fileID: 3086403481888414726}
-  moveSpeed: 1
+  moveSpeed: 2
   maxDistance: -4
   rayHitDistance: 1
   attackCooldown: 5
@@ -90,6 +91,19 @@ MonoBehaviour:
   maxHealth: 1000
   health: 0
   despawnTime: 10
+--- !u!114 &-6866260743376558173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366722428360143028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6466920a0f0ec429659d14cbf6c72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_animation: Ugly_dino_armature|UglyDinoAttack
 --- !u!1 &5637094635442652825
 GameObject:
   m_ObjectHideFlags: 0

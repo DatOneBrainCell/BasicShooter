@@ -7,8 +7,8 @@ public class GameOver : MonoBehaviour
 
     private void OnDestroy() {
 
-        //gameOverScreen.gameObject.SetActive(true);
-        //gun.SetActive(false);
+        gameOverScreen.gameObject.SetActive(true);
+        gun.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

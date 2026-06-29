@@ -7,7 +7,10 @@ public class SpawnEntities : MonoBehaviour
     [SerializeField] private GameObject[] bossGameObjectPrefabs;
 
     [SerializeField] private float spawnInterval;
+    [SerializeField] private float waveInterval;
     [SerializeField] private int enemyAmount;
+    [SerializeField] private int enemiesAlive;
+    [SerializeField] private float waveCount;
 
     private BoxCollider spawnAreaCollider;
 
@@ -25,14 +28,20 @@ public class SpawnEntities : MonoBehaviour
 
     private IEnumerator SpawnEnemiesCoroutine() {
 
-        for (int i = 0; i < enemyAmount; i++) {
-            yield return new WaitForSeconds(spawnInterval);
-            SpawnEnemies();
-            currentEnemy = i;
+        for (int j = 0; j < waveCount; j++) {
+            for (int i = 0; i < enemyAmount; i++) {
+                yield return new WaitForSeconds(spawnInterval);
+                SpawnEnemies();
+                currentEnemy = i;
+            }
+            if(enemiesAlive != 0) {
+                yield return new WaitUntil(() => enemiesAlive == 0);
+            }
+            
         }
-        if (enemyAmount - currentEnemy == 1) {
-            SpawnBoss();
-        }
+        //if (enemyAmount - currentEnemy == 1) {
+        //    SpawnBoss();
+        //}
     }
 
     private void SpawnEnemies() {
@@ -55,5 +64,11 @@ public class SpawnEntities : MonoBehaviour
     private int PickRandomEnemy() {
         int randEnemyID = Random.Range(0, enemyGameObjectPrefabs.Length);
         return randEnemyID;
+    }
+
+    //SETTER
+
+    internal void SetEnemyAliveAmt(int n) {
+        enemiesAlive += n;
     }
 }

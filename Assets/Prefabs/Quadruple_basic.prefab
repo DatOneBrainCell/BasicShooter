@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCheckStartPos: {fileID: 7057744187998199729}
+  spawnEnemiesTransform: {fileID: 4553574984074741, guid: 425ec962dafef134b9db2112e2c613a1, type: 3}
   moveSpeed: 3
   maxDistance: -4
   rayHitDistance: 1
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43278365d9d17d34e9b1abd38b8d07a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 100
   health: 0
   despawnTime: 5
 --- !u!114 &2737365415516619593

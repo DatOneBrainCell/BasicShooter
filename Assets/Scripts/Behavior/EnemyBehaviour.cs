@@ -1,10 +1,10 @@
 using System.Collections;
+using System.Globalization;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private Transform targetCheckStartPos;
-
     [SerializeField] private float moveSpeed = 3;
     [SerializeField] private float maxDistance = -4;
     [SerializeField] private float rayHitDistance = 1;
@@ -16,6 +16,8 @@ public class EnemyBehaviour : MonoBehaviour
     private RaycastHit forwardHit;
     private GameObject player;
     private Collider enemyCollider;
+    private GameObject spawnerGameObject;
+    private SpawnEntities spawnEnemies;
 
     private float attackTimeCounter = 0f;
     private Vector3 playerLookAtPosition;
@@ -26,8 +28,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     private const string PLAYER = "Player";
     private const string OBSTACLE = "Obstacle";
+    private const string SPAWNER = "Spawner";
+
+    private void Awake() {
+
+        spawnerGameObject = GameObject.FindGameObjectWithTag(SPAWNER);
+        spawnEnemies = spawnerGameObject.GetComponent<SpawnEntities>();
+    }
 
     private void Start() {
+
+        spawnEnemies.SetEnemyAliveAmt(1);
 
         enemyCollider = GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag(PLAYER);
@@ -138,5 +149,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     internal bool GetIsIdle() {
         return isIdle;
+    }
+
+    //BUILT IN FUNCTIONS
+
+    private void OnDestroy() {
+
+        spawnEnemies.SetEnemyAliveAmt(-1);
     }
 }

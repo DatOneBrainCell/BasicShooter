@@ -13,20 +13,25 @@ public class SpawnEntities : MonoBehaviour
     [SerializeField] private float waveCount;
 
     private BoxCollider spawnAreaCollider;
+    private GameObject playerWinScreen;
 
     private int currentEnemy;
+
+    private const string WIN_SCREEN = "WinScreen";
 
     private void Awake() {
 
         spawnAreaCollider = GetComponent<BoxCollider>();
+        playerWinScreen = GameObject.FindWithTag(WIN_SCREEN);
     }
 
     private void Start() {
 
-        StartCoroutine(nameof(SpawnEnemiesCoroutine));
+        StartCoroutine(nameof(RepeatedlySpawnMoreEnemiesCoroutine));
+        playerWinScreen.gameObject.SetActive(false);
     }
 
-    private IEnumerator SpawnEnemiesCoroutine() {
+    private IEnumerator RepeatedlySpawnMoreEnemiesCoroutine() {
 
         for (int j = 0; j < waveCount; j++) {
             for (int i = 0; i < enemyAmount; i++) {
@@ -34,10 +39,15 @@ public class SpawnEntities : MonoBehaviour
                 SpawnEnemies();
                 currentEnemy = i;
             }
-            if(enemiesAlive != 0) {
-                yield return new WaitUntil(() => enemiesAlive == 0);
+            yield return new WaitUntil(() => enemiesAlive == 0);
+
+            enemyAmount += 2;
+
+            yield return new WaitForSeconds(waveInterval);
+
+            if (j == waveCount-1) {
+                SpawnBoss();
             }
-            
         }
         //if (enemyAmount - currentEnemy == 1) {
         //    SpawnBoss();

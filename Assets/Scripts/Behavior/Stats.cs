@@ -37,4 +37,8 @@ public class Stats : MonoBehaviour
     internal int GetHealth() {
         return health;
     }
+
+    internal int GetMaxHealth() {
+        return maxHealth;
+    }
 }

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BossDeath : MonoBehaviour
 {
-    private GameObject playerWinScreen;
+    [SerializeField] private GameObject playerWinScreenGameObject;
+    private Canvas playerWinScreen;
     private GameObject enemySpawner;
 
     private const string WIN_SCREEN = "WinScreen";
@@ -10,19 +11,20 @@ public class BossDeath : MonoBehaviour
 
     private void Awake() {
 
-        playerWinScreen = GameObject.FindWithTag(WIN_SCREEN);
+        //playerWinScreenGameObject = GameObject.FindWithTag(WIN_SCREEN);
         enemySpawner = GameObject.FindGameObjectWithTag(SPAWNER);
     }
 
     private void Start() {
-        //playerWinScreen.gameObject.SetActive(false);
+        playerWinScreen = playerWinScreenGameObject.GetComponent<Canvas>();
     }
 
     private void OnDestroy() {
-        
+        Debug.Log("Destroyed");
         if(playerWinScreen != null) {
             playerWinScreen.gameObject.SetActive(true);
             enemySpawner.gameObject.SetActive(false);
+            Debug.Log("Yes");
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
